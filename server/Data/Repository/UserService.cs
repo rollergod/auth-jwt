@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
@@ -46,19 +47,15 @@ namespace server.Data.Repository
             return _userRepository.GetById(id);
         }
 
-        public AuthenticateResponse Register(UserModel userModel)
+        public void Register(UserModel userModel)
         {
+            //validate
+            if (_userRepository.GetAll().Any(x => x.Name == userModel.Name))
+                throw new Exception("Username '" + userModel.Name + "' is already taken");
+            //map
             var user = _mapper.Map<User>(userModel);
-
+            //add to db
             var addedUser = _userRepository.Add(user);
-
-            var response = Authenticate(new AuthenticateRequest
-            {
-                Name = user.Name,
-                Password = user.Password
-            });
-
-            return response;
         }
     }
 }

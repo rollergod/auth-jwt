@@ -41,12 +41,8 @@ namespace server.Controllers
         [HttpPost("register")]
         public IActionResult Register(UserModel userModel)
         {
-            var response = _userRepository.Register(userModel);
-
-            if (response == null)
-                return BadRequest(new { message = "Bad register" });
-
-            return Ok(response);
+            _userRepository.Register(userModel);
+            return Ok(new { message = "Registration successfull" });
         }
 
         [Authorize]
