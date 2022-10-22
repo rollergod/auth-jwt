@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Home = (props) => {
+const Home = () => {
 
 
     return (
         <div>
-            {props.name ? 'Hi ' + props.name : 'You arent logged in'}
+            Hello
         </div>
     )
 }

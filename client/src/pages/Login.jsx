@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-const Login = (props) => {
+const Login = () => {
 
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -21,9 +21,9 @@ const Login = (props) => {
         });
 
         const { name, token } = await response.json();
-        consolelog('login', name);
-        consolelog('login', token);
-        props.setName(name);
+        console.log('login', name);
+        console.log('login', token);
+
         sessionStorage.setItem('jwt', token);
 
         setRedirectTo(true);
