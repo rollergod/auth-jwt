@@ -10,38 +10,38 @@ function App() {
 
   const [name, setName] = React.useState('');
 
-  React.useEffect(() => {
-    (
-      //вызыываем асинхронно
+  // React.useEffect(() => {
+  //   (
+  //     //вызыываем асинхронно
 
-      async () => {
-        console.log('useEffect')
-        const response = await fetch("http://localhost:8000/", {
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          credentials: 'include', //получаем куки
-        });
+  //     async () => {
+  //       console.log('useEffect')
+  //       const response = await fetch("http://localhost:8000/", {
+  //         headers: {
+  //           'Content-Type': 'application/json'
+  //         },
+  //         credentials: 'include', //получаем куки
+  //       });
 
-        if (response.ok === true) {
-          console.log('good auth')
-        }
-        else {
-          console.log('Status: ', response.status)
-        }
-        const content = await response.json();
+  //       if (response.ok === true) {
+  //         console.log('good auth')
+  //       }
+  //       else {
+  //         console.log('Status: ', response.status)
+  //       }
+  //       const content = await response.json();
 
-        setName(content.name);
+  //       setName(content.name);
 
-      }
-    )();
-  });
+  //     }
+  //   )();
+  // });
 
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Nav name={name} setName={setName} />
+        <Nav />
         <main className="form-signin w-100 m-auto">
           <Routes>
             {/* exact убирает совпадание путей (главный путь начинается на /, и если перейти на /login то там будет и /home) */}
