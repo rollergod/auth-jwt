@@ -29,5 +29,22 @@ namespace server.Helpers
 
             return tokenHandler.WriteToken(token);
         }
+
+        public JwtSecurityToken Verify(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes(AuthOptions.Secret_Key);
+            tokenHandler.ValidateToken(token, new TokenValidationParameters
+            {
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuerSigningKey = true,
+                ValidateIssuer = false,
+                ValidateAudience = false,
+            }, out SecurityToken validatedToken);
+
+            return (JwtSecurityToken)validatedToken;
+
+
+        }
     }
 }

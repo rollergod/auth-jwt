@@ -5,51 +5,27 @@ import Login from './pages/Login';
 import Nav from './components/Nav';
 import Home from './pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserName, getCurrentUser } from './redux/slices/userSlice'
+import Users from './pages/Users';
 
 function App() {
-
-  const [name, setName] = React.useState('');
-
-  // React.useEffect(() => {
-  //   (
-  //     //вызыываем асинхронно
-
-  //     async () => {
-  //       console.log('useEffect')
-  //       const response = await fetch("http://localhost:8000/", {
-  //         headers: {
-  //           'Content-Type': 'application/json'
-  //         },
-  //         credentials: 'include', //получаем куки
-  //       });
-
-  //       if (response.ok === true) {
-  //         console.log('good auth')
-  //       }
-  //       else {
-  //         console.log('Status: ', response.status)
-  //       }
-  //       const content = await response.json();
-
-  //       setName(content.name);
-
-  //     }
-  //   )();
-  // });
-
 
   return (
     <div className="App">
       <BrowserRouter>
         <Nav />
-        <main className="form-signin w-100 m-auto">
-          <Routes>
-            {/* exact убирает совпадание путей (главный путь начинается на /, и если перейти на /login то там будет и /home) */}
-            <Route path='/' exact element={<Home name={name} />} />
-            <Route path='/login' element={<Login setName={setName} />} />
-            <Route path='/register' element={<Register />} />
-          </Routes>
-        </main>
+        <div className='auth-wrapper'>
+          <div className='auth-inner'>
+            <Routes>
+              {/* exact убирает совпадание путей (главный путь начинается на /, и если перейти на /login то там будет и /home) */}
+              <Route path='/' exact element={<Home />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/users' element={<Users />} />
+              <Route path='/register' element={<Register />} />
+            </Routes>
+          </div>
+        </div>
       </BrowserRouter>
     </div>
   );

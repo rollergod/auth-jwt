@@ -28,7 +28,7 @@ namespace server.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Authenticate(AuthenticateRequest request)
+        public IActionResult Login(AuthenticateRequest request)
         {
             var response = _userRepository.Authenticate(request);
 
@@ -46,8 +46,38 @@ namespace server.Controllers
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpGet("getall")]
         public IActionResult GetAll() => Ok(_userRepository.GetAll());
+
+        [HttpGet("user")]
+        public IActionResult User(string token)
+        {
+            try
+            {
+                var validatedToken = _jwtService.Verify(token);
+
+                int userId = int.Parse(validatedToken.Claims.First(c => c.Type == "id").Value);
+
+                var user = _userRepository.GetById(userId);
+
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+                return Unauthorized();
+            }
+        }
+
+        // [HttpPost("logout")]
+        // public IActionResult Logout()
+        // {
+        //     Response.Cookies.Delete("jwt");
+
+        //     return Ok(new
+        //     {
+        //         message = "success"
+        //     });
+        // }
 
     }
 }

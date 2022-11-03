@@ -1,58 +1,60 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserName } from '../redux/slices/userSlice';
+
 
 const Nav = () => {
 
+    const dispatch = useDispatch();
+    const username = useSelector((state) => state.userSlice.username);
+    const [redirectTo, setRedirectTo] = React.useState(false);
+
     const logout = async (e) => {
         e.preventDefault();
-        await fetch('http://localhost:8000/api/delete', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include'
-        });
-
-        // .setName('');
+        sessionStorage.removeItem('jwt');
+        dispatch(setUserName(''));
     };
 
-    // let menu;
+    let menu;
 
-    // if (.name === '') {
-    //     console.log('ПЕРЕРИСОВКА')
-    //     menu = (
-    //         <ul className="navbar-nav me-auto mb-2 mb-md-0">
-    //             <li className="nav-item">
-    //                 <Link className="nav-link active" aria-current="page" to="/login">Login</Link>
-    //             </li>
-    //             <li className="nav-item">
-    //                 <Link className="nav-link active" aria-current="page" to="/register">Register</Link>
-    //             </li>
-    //         </ul>
-    //     )
-    // } else {
-    //     console.log('ПЕРЕРИСОВКА')
-    //     menu = (
-    //         <ul className="navbar-nav me-auto mb-2 mb-md-0">
-    //             <li className="nav-item active">
-    //                 <Link className="nav-link" aria-current="page" to="/login" onClick={logout}>Logout</Link>
-    //             </li>
-    //         </ul>
-    //     )
-    // }
+    if (username === '') {
+        menu = (
+            <ul className="navbar-nav me-auto mb-2 mb-md-0">
+                <li className="nav-item">
+                    <Link className="nav-link" aria-current="page" to="/login">Login</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" aria-current="page" to="/register">Register</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" aria-current="page" to="/users">Users</Link>
+                </li>
+            </ul>
+        )
+    } else {
+        menu = (
+            <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                    <span className="nav-link active" >{`Hello, ${username}`}</span>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" aria-current="page" to="/users">Users</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" aria-current="page" to="/login" onClick={logout}>Logout</Link>
+                </li>
+            </ul >
+        )
+    }
 
     return (
-        <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-            <div className="container-fluid">
+        <nav className="navbar navbar-expand navbar-light fixed-top">
+            <div className="container">
                 <Link className="navbar-brand" to="/">Home</Link>
 
-                <div>
-                    <ul className="navbar-nav me-auto mb-2 mb-md-0">
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/login">Login</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/register">Register</Link>
-                        </li>
-                    </ul>
+                <div className="">
+                    {menu}
                 </div>
 
             </div>

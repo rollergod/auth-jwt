@@ -26,18 +26,29 @@ const Register = () => {
     }
 
     if (redirectTo) {
-        console.log('good')
         return <Navigate to="/login" />
     }
 
     return (
         <form onSubmit={submit}>
-            <h1 className="h3 mb-3 fw-normal">Please register</h1>
+            <h1 className="h3 mb-3 fw-normal text-center">Please register</h1>
+
+            <div className="form-group">
+                <label>Username</label>
+                <input className="form-control" placeholder="Name" required onChange={(e) => setName(e.target.value)} value={name} />
+            </div>
 
 
-            <input className="form-control" placeholder="Name" required onChange={(e) => setName(e.target.value)} value={name} />
-            <input type="email" className="form-control" placeholder="name@example.com" required onChange={(e) => setEmail(e.target.value)} value={email} />
-            <input type="password" className="form-control" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} value={password} />
+            <div className="form-group">
+                <label>Email</label>
+                <input type="email" className="form-control" placeholder="name@example.com" required onChange={(e) => setEmail(e.target.value)} value={email} />
+            </div>
+
+
+            <div className="form-group">
+                <label>Password</label>
+                <input type="password" className="form-control" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} value={password} />
+            </div>
 
             <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
         </form>

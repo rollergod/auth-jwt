@@ -30,7 +30,7 @@ namespace server.Data.Repository
                 .FirstOrDefault(x => x.Name == requestModel.Name && x.Password == requestModel.Password);
 
             if (user == null)
-                return null;
+                throw new Exception("Username or password is incorrect");
 
             var token = _jwtService.Generate(user);
 
@@ -49,11 +49,11 @@ namespace server.Data.Repository
 
         public void Register(UserModel userModel)
         {
-            //validate
-            if (_userRepository.GetAll().Any(x => x.Name == userModel.Name))
-                throw new Exception("Username '" + userModel.Name + "' is already taken");
             //map
             var user = _mapper.Map<User>(userModel);
+            //validate
+            if (_userRepository.GetAll().Any(x => x.Name == user.Name))
+                throw new Exception("Username '" + user.Name + "' is already taken");
             //add to db
             var addedUser = _userRepository.Add(user);
         }

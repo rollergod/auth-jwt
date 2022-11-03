@@ -7,5 +7,6 @@ namespace server.Helpers
     public interface IJwtService
     {
         public string Generate(User user);
+        public JwtSecurityToken Verify(string token);
     }
 }

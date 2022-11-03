@@ -18,10 +18,11 @@ namespace server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserModel>(entitty =>
+            modelBuilder.Entity<UserModel>(entity =>
             {
+                entity.HasNoKey();
                 //уникаольное имя
-                entitty.HasIndex(e => e.Name).IsUnique();
+                entity.HasIndex(e => e.Name).IsUnique();
             });
         }
     }

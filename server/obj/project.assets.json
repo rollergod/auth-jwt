@@ -5757,11 +5757,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\2022\\auth-jwt\\server\\server.csproj",
+      "projectUniqueName": "D:\\Projects\\2022\\auth\\server\\server.csproj",
       "projectName": "server",
-      "projectPath": "D:\\Projects\\2022\\auth-jwt\\server\\server.csproj",
+      "projectPath": "D:\\Projects\\2022\\auth\\server\\server.csproj",
       "packagesPath": "C:\\Users\\Apaev\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\2022\\auth-jwt\\server\\obj\\",
+      "outputPath": "D:\\Projects\\2022\\auth\\server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Apaev\\AppData\\Roaming\\NuGet\\NuGet.Config",

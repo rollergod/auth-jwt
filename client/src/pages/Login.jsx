@@ -1,9 +1,11 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUserName } from '../redux/slices/userSlice';
 
 const Login = () => {
 
-    const [email, setEmail] = React.useState('');
+    const [name, setName] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [redirectTo, setRedirectTo] = React.useState(false);
 
@@ -16,30 +18,33 @@ const Login = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email, password
+                name, password
             })
         });
 
-        const { name, token } = await response.json();
-        console.log('login', name);
-        console.log('login', token);
+        const { token } = await response.json();
 
         sessionStorage.setItem('jwt', token);
-
         setRedirectTo(true);
     }
 
     if (redirectTo) {
-        console.log('good')
         return <Navigate to="/" />
     }
 
     return (
         <form onSubmit={submit}>
-            <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+            <h1 className="h3 mb-3 fw-normal text-center">Please sign in</h1>
 
-            <input type="email" className="form-control" placeholder="name@example.com" required onChange={(e) => setEmail(e.target.value)} value={email} />
-            <input type="password" className="form-control" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} value={password} />
+            <div className="form-group">
+                <label>Username</label>
+                <input type="text" className="form-control" placeholder="Username" required onChange={(e) => setName(e.target.value)} value={name} />
+            </div>
+
+            <div className="form-group">
+                <label>Username</label>
+                <input type="password" className="form-control" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} value={password} />
+            </div>
 
             <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
         </form>

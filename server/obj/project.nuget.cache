@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GnC7UzQh2n+w2xArjdnESDoh9tpZ27aOJtp/8By1u/CefB+WlQsfaIrSmNzvcWf99+R7aJlNPMpfXpIe6axeFg==",
+  "dgSpecHash": "BAycHvE+hnkIm2lhWRZAeyiB4KOtbW/Vit5Ud+YI3euaW7/WqwyQSZV+KvdyjfbAAeWBNnYFC5MS6VneI1ePZA==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\2022\\auth-jwt\\server\\server.csproj",
+  "projectFilePath": "D:\\Projects\\2022\\auth\\server\\server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Apaev\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Apaev\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
