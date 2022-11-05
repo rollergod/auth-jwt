@@ -1,57 +1,46 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { AuthService } from '../services/AuthService';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
+
+    const authService = AuthService();
+    const navigate = useNavigate();
 
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const [redirectTo, setRedirectTo] = React.useState(false);
 
     const submit = async (e) => {
         e.preventDefault();
+        authService.register(name, email, password);
 
-        await fetch("http://localhost:8000/api/register", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name, email, password
-            })
-        });
-
-        setRedirectTo(true);
-
-    }
-
-    if (redirectTo) {
-        return <Navigate to="/login" />
+        navigate('/login', { replace: true });
     }
 
     return (
-        <form onSubmit={submit}>
-            <h1 className="h3 mb-3 fw-normal text-center">Please register</h1>
+        <div className='flex flex-col items-center justify-center w-screen h-screen bg-gray-200 text-gray-700'>
+            <h1 class="font-bold text-2xl">Registration</h1>
 
-            <div className="form-group">
-                <label>Username</label>
-                <input className="form-control" placeholder="Name" required onChange={(e) => setName(e.target.value)} value={name} />
-            </div>
+            <form class="flex flex-col bg-white rounded shadow-lg p-12 mt-12" onSubmit={submit}>
+                <label class="font-semibold text-xs" for="usernameField">Username</label>
+                <input class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="text" onChange={(e) => setName(e.target.value)} value={name} />
 
+                <label class="font-semibold text-xs" for="usernameField">Email</label>
+                <input class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="text" onChange={(e) => setEmail(e.target.value)} value={email} />
 
-            <div className="form-group">
-                <label>Email</label>
-                <input type="email" className="form-control" placeholder="name@example.com" required onChange={(e) => setEmail(e.target.value)} value={email} />
-            </div>
+                <label class="font-semibold text-xs mt-3" for="passwordField">Password</label>
+                <input class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="password" onChange={(e) => setPassword(e.target.value)} value={password} />
 
+                <button type='submit' class="flex items-center justify-center h-12 px-6 w-64 bg-blue-600 mt-8 rounded font-semibold text-sm text-blue-100 hover:bg-blue-700">Register</button>
 
-            <div className="form-group">
-                <label>Password</label>
-                <input type="password" className="form-control" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} value={password} />
-            </div>
+                <div class="flex mt-6 justify-center text-xs">
+                    <Link class="text-blue-400 hover:text-blue-500" to="/login">Sign in</Link>
+                </div>
 
-            <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        </form>
+            </form>
+        </div>
     )
 }
 

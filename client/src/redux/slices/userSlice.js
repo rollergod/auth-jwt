@@ -20,7 +20,6 @@ export const getUsersAsync = createAsyncThunk('user/getUsers', async () => {
             'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
         }
     })
-    console.log('users', data);
     return data;
 })
 
@@ -37,6 +36,9 @@ const userSlice = createSlice({
     reducers: {
         setUserName(state, action) {
             state.username = action.payload;
+        },
+        removeUser(state) {
+            state.username = null;
         },
     }, extraReducers: {
         [getUsersAsync.pending]: (state) => {
@@ -63,9 +65,10 @@ const userSlice = createSlice({
         },
         [getCurrentUser.rejected]: (state) => {
             console.log('Error');
+            state.status = 'error';
         }
     }
 })
 
-export const { setUserName } = userSlice.actions;
+export const { setUserName, removeUser } = userSlice.actions;
 export default userSlice.reducer;
