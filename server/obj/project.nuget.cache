@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BAycHvE+hnkIm2lhWRZAeyiB4KOtbW/Vit5Ud+YI3euaW7/WqwyQSZV+KvdyjfbAAeWBNnYFC5MS6VneI1ePZA==",
+  "dgSpecHash": "XZZP6QknYahqkuwa95x7z5MfKM4zsaaIZlo6YKDffFLfJOjxpWXmPRVELPnuQPF2l+JyYS9KCqnW4FfVIQDDtg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\2022\\auth\\server\\server.csproj",
   "expectedPackageFiles": [
@@ -107,7 +107,8 @@
     "C:\\Users\\Apaev\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Apaev\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Apaev\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Apaev\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\Apaev\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\Apaev\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
   ],
   "logs": []
 }

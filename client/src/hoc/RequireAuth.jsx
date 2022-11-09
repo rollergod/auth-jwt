@@ -1,19 +1,16 @@
-import { useLocation, Navigate } from "react-router-dom";
-import { AuthService } from "../services/AuthService";
+import { useSelector } from "react-redux";
+import { useLocation, Navigate, Outlet } from "react-router-dom";
+import { selectCurrentToken } from "../redux/slices/authSlice";
 
 const RequireAuth = ({ children }) => {
 
-    const authService = AuthService();
-
+    const token = useSelector(selectCurrentToken);
     const location = useLocation();
-    const auth = authService.isAuth();
-
-    if (auth === null) {
-        return <Navigate to="/login" state={{ from: location }} />
-    }
+    console.log('token', token);
+    if (token === null)
+        <Navigate to="/login" state={{ from: location }} replace />
 
     return children;
-
 }
 
 export { RequireAuth };

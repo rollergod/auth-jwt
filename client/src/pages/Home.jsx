@@ -7,25 +7,18 @@ import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import About from '../components/About';
 import Experience from '../components/Experience';
 
+import { selectCurrentUser } from '../redux/slices/authSlice';
+
 
 const Home = () => {
 
 
     const dispatch = useDispatch();
-    const username = useSelector(state => state.userSlice.username);
+    // const username = useSelector(state => state.userSlice.username);
 
-    const getUser = () => {
-        try {
-            dispatch(getCurrentUser());
-        } catch (error) {
-            console.log('ERROR', error);
-            alert('Ошибка при получении данных')
-        }
-    }
+    const user = useSelector(selectCurrentUser);
+    console.log('user', user);
 
-    React.useEffect(() => {
-        getUser();
-    }, []);
 
     const HomePage = () => {
         return (
@@ -62,7 +55,7 @@ const Home = () => {
 
     return (
         <>
-            {username === '' ? <h1>Loggin in</h1> : <HomePage />}
+            {user === null ? <h1>Loggin in</h1> : <HomePage />}
         </>
     )
 }

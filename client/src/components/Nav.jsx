@@ -5,16 +5,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUserName } from '../redux/slices/userSlice';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
+import { selectCurrentUser } from '../redux/slices/authSlice';
+import { logOut } from '../redux/slices/authSlice';
 
 const Nav = () => {
+
+
+    const user = useSelector(selectCurrentUser);
 
     const navigate = useNavigate();
 
     //перенести в сервис
     const logout = async (e) => {
         e.preventDefault();
-        sessionStorage.removeItem('jwt');
-        dispatch(setUserName(''));
+        dispatch(logOut());
 
         navigate("/login", { replace: true });
     };
@@ -51,12 +55,12 @@ const Nav = () => {
     ]
 
     const dispatch = useDispatch();
-    const username = useSelector((state) => state.userSlice.username);
+    //const username = useSelector((state) => state.userSlice.username);
     const [nav, setNav] = React.useState(false);
 
     let menu;
 
-    if (username === '') {
+    if (user === null) {
         menu = (
             <ul className='hidden md:flex'>
                 {

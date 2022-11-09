@@ -1,29 +1,33 @@
 import React from 'react';
-import { Navigate, useNavigate, useLocation } from 'react-router-dom';
-import { AuthService } from '../services/AuthService';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+
+
+import { useRegisterMutation } from '../redux/slices/authApiSlice';
 
 const Register = () => {
 
-    const authService = AuthService();
     const navigate = useNavigate();
 
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
-    const submit = async (e) => {
-        e.preventDefault();
-        authService.register(name, email, password);
+    const [register] = useRegisterMutation();
 
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await register({ name, email, password }).unwrap();
         navigate('/login', { replace: true });
     }
+
 
     return (
         <div className='flex flex-col items-center justify-center w-screen h-screen bg-gray-200 text-gray-700'>
             <h1 class="font-bold text-2xl">Registration</h1>
 
-            <form class="flex flex-col bg-white rounded shadow-lg p-12 mt-12" onSubmit={submit}>
+            <form class="flex flex-col bg-white rounded shadow-lg p-12 mt-12" onSubmit={handleSubmit}>
                 <label class="font-semibold text-xs" for="usernameField">Username</label>
                 <input class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="text" onChange={(e) => setName(e.target.value)} value={name} />
 

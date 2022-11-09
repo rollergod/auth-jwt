@@ -134,3 +134,8 @@ D:\Projects\2022\auth\server\obj\Debug\net5.0\refint\server.dll
 D:\Projects\2022\auth\server\obj\Debug\net5.0\server.pdb
 D:\Projects\2022\auth\server\obj\Debug\net5.0\server.genruntimeconfig.cache
 D:\Projects\2022\auth\server\obj\Debug\net5.0\ref\server.dll
+D:\Projects\2022\auth\server\obj\Debug\net5.0\staticwebassets\server.StaticWebAssets.Pack.cache
+D:\Projects\2022\auth\server\obj\Debug\net5.0\staticwebassets\msbuild.server.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Projects\2022\auth\server\obj\Debug\net5.0\staticwebassets\msbuild.build.server.props
+D:\Projects\2022\auth\server\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.server.props
+D:\Projects\2022\auth\server\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.server.props
