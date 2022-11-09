@@ -15,11 +15,9 @@ const Nav = () => {
 
     const navigate = useNavigate();
 
-    //перенести в сервис
     const logout = async (e) => {
         e.preventDefault();
         dispatch(logOut());
-
         navigate("/login", { replace: true });
     };
 
@@ -55,7 +53,6 @@ const Nav = () => {
     ]
 
     const dispatch = useDispatch();
-    //const username = useSelector((state) => state.userSlice.username);
     const [nav, setNav] = React.useState(false);
 
     let menu;

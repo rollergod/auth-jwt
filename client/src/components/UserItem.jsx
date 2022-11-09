@@ -6,7 +6,6 @@ import userIcon from '../logo.png';
 const UserItem = ({ id, name, email }) => {
     return (
 
-
         <div className='wrapper'>
             <div className="product-img">
                 <img src={userIcon} height="250" width="250" alt="" />
